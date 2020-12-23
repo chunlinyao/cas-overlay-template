@@ -70,12 +70,17 @@ task explodeWar(type: Copy, group: "CAS", description: "Explodes the CAS archive
 task run(group: "build", description: "Run the CAS web application in embedded container mode") {
     dependsOn 'build'
     doLast {
-        def casRunArgs = Arrays.asList("-server -noverify -Xmx2048M -XX:+TieredCompilation -XX:TieredStopAtLevel=1".split(" "))
+        def casRunArgs = new ArrayList<>(Arrays.asList(
+                "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -server -noverify -Xmx2048M -XX:+TieredCompilation -XX:TieredStopAtLevel=1".split(" ")))
+        if (project.hasProperty('args')) {
+		casRunArgs.addAll(project.args.split('\\s+'))
+	}
+        println casRunArgs
         javaexec {
             main = "-jar"
             jvmArgs = casRunArgs
             args = ["build/libs/${casWebApplicationBinaryName}"]
-            systemProperties = System.properties
+            //systemProperties = System.properties
             logger.info "Started ${commandLine}"
         }
     }
