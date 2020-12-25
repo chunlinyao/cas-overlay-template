@@ -1,15 +1,11 @@
 {
   "@class" : "org.apereo.cas.services.RegexRegisteredService",
-  "serviceId" : "http://localhost:8080/Login/.*",
+  "serviceId" : "http://localhost:8080/.*",
   "name" : "casSecuredApp",
   "id" : 8900,
-  "logoutType" : "FRONT_CHANNEL",
-  "logoutUrl" : "http://localhost:8080/Login/logout",
+  "logoutType" : "BACK_CHANNEL",
+  "logoutUrl" : "http://localhost:8080/Login/callback",
   "attributeReleasePolicy" : {
-    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy",
-    "principalAttributesRepository" : {
-      "@class" : "org.apereo.cas.authentication.principal.DefaultPrincipalAttributesRepository",
-      "attributeRepositoryIds": ["java.util.HashSet", [ "myjson", "mygroovy" ]]
-    }
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
   }
 }
