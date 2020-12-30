@@ -1,0 +1,11 @@
+{
+  "@class" : "org.apereo.cas.services.RegexRegisteredService",
+  "serviceId" : "http://127.0.0.1:8087.*",
+  "name" : "cube",
+  "id" : 11,
+  "logoutType" : "BACK_CHANNEL",
+  "logoutUrl" : "http://127.0.0.1:8087/public-admin-server/login/jxyjLogin?location=http://localhost:8199/",
+  "attributeReleasePolicy" : {
+    "@class" : "org.apereo.cas.services.ReturnAllAttributeReleasePolicy"
+  }
+}
